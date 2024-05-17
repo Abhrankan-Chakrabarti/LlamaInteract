@@ -1,0 +1,3 @@
+getch
+rich
+llama-cpp-python
