@@ -6,7 +6,7 @@ The Llama_CPP Chatbot is a Python chatbot that uses the `llama_cpp` library for 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your_username/llama_cpp_chatbot.git
+   git clone https://github.com/Abhrankan-Chakrabarti/llama_cpp_chatbot.git
    cd llama_cpp_chatbot
    ```
 
