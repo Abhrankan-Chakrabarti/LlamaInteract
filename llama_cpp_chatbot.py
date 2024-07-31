@@ -1,11 +1,12 @@
 from console_explorer import *
 
 file = browse_for_file(extensions_list=('gguf',))
+model = file.split(sep)
 
-import llama_cpp
+import ollama
 
 # Create a new Llama object
-llama_obj = llama_cpp.Llama(model_path=file, verbose=False, n_ctx=2048)
+ollama.create(model=model, modelfile=f'FROM {file}')
 
 # REPL loop
 while True:
@@ -17,10 +18,14 @@ while True:
         break
 
     try:
-        # Evaluate the input using the llama_obj
-        tokens = llama_obj.tokenize(user_input.encode())
-        for token in llama_obj.generate(tokens, top_k=40, top_p=0.95, temp=0.7, repeat_penalty=1.1):
-            print(llama_obj.detokenize([token]).decode(), end="", flush=True)
+        # Evaluate the input using the llama model
+        stream = ollama.chat(
+    model=model,
+    messages=[{'role': 'user', 'content': user_input}],
+    stream=True,
+)
+        for chunk in stream:
+            print(chunk['message']['content'], end='', flush=True)
         print()
     except BaseException as e:
         print("\n" + repr(e).split("(")[0] + (":" if str(e) else ""), e)
