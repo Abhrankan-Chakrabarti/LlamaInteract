@@ -1,9 +1,12 @@
-from getch import getch
 from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
 from rich import box
 import os
+if os.name == 'nt':
+    from msvcrt import getch
+else:
+    from getch import getch
 
 cls = 'cls' if os.name == 'nt' else 'clear'
 
@@ -36,16 +39,26 @@ class Menu:
         )
 
     def on_press(self, key):
-        if key == '\x1b' and getch() == '[':
+        if os.name == 'nt':
+            arrow_key_pressed = key == b'\xe0'
+            up_key = b'H'
+            down_key = b'P'
+
+        else:
+            arrow_key_pressed = key == '\x1b' and getch() == '['
+            up_key = 'A'
+            down_key = 'B'
+
+        if arrow_key_pressed:
             key = getch()
-            if key == 'A':
+            if key == up_key:
                 if self.current_option > 0:
                     self.current_option -= 1
                 os.system(cls)
                 self.print_menu(self.justify_menu)
                 self.print_options(self.justify_options)
 
-            elif key == 'B':
+            elif key == down_key:
                 if self.current_option < len(self.options) - 1:
                     self.current_option += 1
                 os.system(cls)

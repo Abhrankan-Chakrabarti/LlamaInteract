@@ -1,31 +1,28 @@
-from console_explorer import *
-
-file = browse_for_file(extensions_list=('gguf',))
-model = file.split(sep)[-1]
-
-import ollama
+from model_selector import *
+from stream import *
 
 # Create a new Llama object
 ollama.create(model=model, modelfile=f'FROM {file}')
 
-# REPL loop
-while True:
-    # Read user input
-    user_input = input(">> ")
+def mode_selector():
+    console = Console(width=59, height=30)
+    while True:
+    	text = (
+    	    'Select a mode'
+    	)
 
-    # Check for exit command
-    if user_input.lower() == "exit":
-        break
+    	options = {1: 'Terminal mode', 2: 'Web App mode'}
+    	starting_menu = Menu(text, options, console)
+    	starting_menu.print_menu()
+    	starting_menu.print_options()
+    	a = starting_menu.choice()
 
-    try:
-        # Evaluate the input using the llama model
-        stream = ollama.chat(
-    model=model,
-    messages=[{'role': 'user', 'content': user_input}],
-    stream=True,
-)
-        for chunk in stream:
-            print(chunk['message']['content'], end='', flush=True)
-        print()
-    except BaseException as e:
-        print("\n" + repr(e).split("(")[0] + (":" if str(e) else ""), e)
+    	if a == 1:
+    		import terminal
+    		return terminal
+    	elif a == 2:
+    		import app
+    		return app
+
+selected_mode = mode_selector()
+selected_mode.main(model=model, stream=stream)
