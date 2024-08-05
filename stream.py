@@ -1,4 +1,3 @@
-
 import ollama
 
 def stream(input, model):
@@ -9,4 +8,4 @@ def stream(input, model):
     stream=True,
     )
     for chunk in completion:
-        yield chunk['message']['content']
+        yield chunk['message']['content']]
