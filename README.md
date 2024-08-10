@@ -1,10 +1,10 @@
 # LlamaInteract
 
-**LlamaInteract** is a versatile, AI-powered platform developed by *The Vanguards*, offering both CLI and web-based interfaces for dynamic, real-time AI interactions. This project is designed for flexibility, enabling users to easily switch between different language models and experience immediate response streaming.
+**LlamaInteract** is a versatile, AI-powered platform developed by *The Vanguards*, offering both terminal and web-based interfaces for dynamic, real-time AI interactions. This project is designed for flexibility, enabling users to easily switch between different language models and experience immediate response streaming.
 
 ## Features
 
-- **Dual Interface Flexibility**: Interact via Command-Line Interface (CLI) or through a user-friendly Web Application.
+- **Dual Interface Flexibility**: Interact via Terminal Interface or through a user-friendly Web Application.
 - **Real-Time Streaming**: Immediate feedback and interaction using Server-Sent Events (SSE).
 - **Dynamic Model Integration**: Easily switch between models without extensive reconfiguration.
 - **Modular Design**: Structured for easy maintenance and future enhancements.
@@ -36,16 +36,16 @@
     ```
     Visit `http://127.0.0.1:5000` in your browser.
 
-4. **Run the CLI Interface**:
+4. **Run the Terminal Interface**:
     ```bash
-    python cli.py
+    python terminal.py
     ```
 
 ## Usage
 
-- **CLI Mode**:
-  - Run `cli.py` and follow the prompts to interact with the AI model directly through the terminal.
-  - Type `exit` to quit the CLI mode.
+- **Terminal Mode**:
+  - Run `terminal.py` and follow the prompts to interact with the AI model directly through the terminal.
+  - Type `exit` to quit the terminal mode.
 
 - **Web App Mode**:
   - Start the web server using `app.py` and interact through the browser interface.
