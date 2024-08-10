@@ -23,3 +23,7 @@ def main(model, stream):
     exit_cmd = None
     while not exit_cmd:
         exit_cmd = terminal(model, stream)
+
+if __name__ == '__main__':
+    from main import *
+    main(model=model, stream=stream)

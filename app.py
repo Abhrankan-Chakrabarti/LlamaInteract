@@ -21,4 +21,11 @@ def globalize(m, s):
 
 def main(model, stream):
     globalize(model, stream)
+    run()
+
+def run():
     app.run(debug=True, use_reloader=False)
+
+if __name__ == '__main__':
+    from main import *
+    run()
