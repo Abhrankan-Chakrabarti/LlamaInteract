@@ -52,7 +52,7 @@
                 const {done, value} = await reader.read(); 
                 if (done) break; 
                 const text = new TextDecoder().decode(value); 
-                document.getElementById("result").innerHTML += encodeURIComponent(text); 
+                document.getElementById("result").innerHTML += new Option(text).innerHTML; 
               }
             } catch (error) {
               console.error(error);
