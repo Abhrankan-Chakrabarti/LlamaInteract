@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, Response
+import os
+from flask import Flask, render_template, request, Response, send_from_directory
 
 app = Flask(__name__)
 
@@ -14,6 +15,10 @@ def completion_api():
         return Response(stream(input_text, model), mimetype='text/event-stream')
     else:
         return Response(None, mimetype='text/event-stream')
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static', 'img'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 def globalize(m, s):
     global model, stream
